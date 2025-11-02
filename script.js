@@ -13,19 +13,19 @@ async function getTrees() {
 }
 
 // 2. Parse the data that I get as a response to find what I need
-function getTreeInfo(data) {
+function getTreesInfo(data) {
     // start with empty array 
     const allTrees = [];
 
     data.forEach(tree => {
-        const treeDetails = {
+        const treesDetails = {
             commonName: tree["common_name"],
             botanicalName: tree["botanical_name"],
             diameter: tree["diameter_at_breast_height"],
             park: tree["park"],
             neighbourhood: tree["neighbourhood"]
         };
-        allTrees.push(treeDetails);
+        allTrees.push(treesDetails);
     });
 
     return allTrees;
@@ -35,6 +35,6 @@ window.onload = async() => {
     // wait for getCountries() to finish before going to the next line
     // always await a function that does a fetch
     const Data = await getTress();
-    console.log(getTrees(Data));
+    console.log(getTreesInfo(Data));
 }
  
