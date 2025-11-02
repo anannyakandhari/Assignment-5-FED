@@ -28,13 +28,13 @@ function getTreeInfo(data) {
         allTrees.push(treeDetails);
     });
 
-    return allNames;
+    return allTrees;
 }
 
 window.onload = async() => {
     // wait for getCountries() to finish before going to the next line
     // always await a function that does a fetch
-    const countryData = await getCountries();
-    console.log(getNames(countryData));
+    const Data = await getTress();
+    console.log(getTrees(Data));
 }
  
