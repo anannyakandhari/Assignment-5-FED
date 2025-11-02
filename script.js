@@ -4,17 +4,16 @@ console.log("started");
 // asynchronous function (because it gets data from an API)
 async function getTrees() {
     // always await fetch
- try {
-    const response = await fetch("https://data.winnipeg.ca/resource/hfwk-jp4h.json");
-    if (!response.ok) {
+    try {
+        const response = await fetch("https://data.winnipeg.ca/resource/hfwk-jp4h.json");
+        if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    // parse to json
-    // always await response.json()
-    const jsonResponse = await response.json();
-    return jsonResponse;
-}
-catch (error) {
+        // parse to json
+        // always await response.json()
+        const jsonResponse = await response.json();
+        return jsonResponse;
+    } catch (error) {
         console.error("Error fetching tree data:", error);
         alert("Failed to load tree data. Please try again later.");
     }
@@ -24,7 +23,7 @@ catch (error) {
 function getTreesInfo(data) {
     // start with empty array 
     const allTrees = [];
-data.forEach(tree => {
+    data.forEach(tree => {
         const { common_name, botanical_name, diameter_at_breast_height, park, neighbourhood } = tree;
         allTrees.push({
             commonName: common_name,
@@ -34,16 +33,14 @@ data.forEach(tree => {
             neighbourhood
         });
     });
-
-    
     return allTrees;
 }
 
 
-window.onload = async() => {
-    // wait for getCountries() to finish before going to the next line
-    // always await a function that does a fetch
+window.onload = async () => {
+// wait for getTrees() to finish before going to the next line
+// always await a function that fetches tree data from the API
     const Data = await getTrees();
-    console.log(getTreesInfo(Data));
-}
- 
+    const treeInfo = getTreesInfo(Data);
+    console.log(treeInfo);
+};
